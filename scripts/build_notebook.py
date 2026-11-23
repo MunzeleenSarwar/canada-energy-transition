@@ -1,0 +1,93 @@
+"""Combined notebook: recompute the headline numbers for Part A, Part B,
+and the joint table. Written as plain JSON, no nbformat dependency.
+Run from the energy-transition folder, in VS Code."""
+import json
+import pathlib
+
+base = pathlib.Path(__file__).resolve().parents[1]
+
+
+def md(text):
+    return {"cell_type": "markdown", "metadata": {}, "source": text.splitlines(True)}
+
+
+def code(text):
+    return {"cell_type": "code", "execution_count": None, "metadata": {},
+            "outputs": [], "source": text.splitlines(True)}
+
+
+cells = [
+    md("# Who Can Pay for the Transition\n\n"
+       "Part A: Canada's energy transition from Statistics Canada. "
+       "Part B: credit risk models on the 12 scorecard companies. "
+       "Joint conclusion: which companies can pay for the transition.\n\n"
+       "Run the cells in order, from the energy-transition folder."),
+    code("import pandas as pd\n"
+         "import numpy as np\n"
+         "import matplotlib.pyplot as plt\n"
+         "plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 10})\n"
+         "sc = pd.read_csv('data/scorecard.csv')\n"
+         "sc.sort_values('total', ascending=False)"),
+    code("# Part A: headline figures from the StatCan analysis files\n"
+         "el = pd.read_csv('analysis_electricity.csv')\n"
+         "en = pd.read_csv('analysis_energy_production.csv')\n"
+         "cx = pd.read_csv('analysis_capex.csv')\n"
+         "w15 = el[el.year == 2016]['Wind'].iloc[0]  # wind in 2016, the first split year\n"
+         "print('Wind 2016 to 2024, TWh:', round(el[el.year == 2024]['Wind'].iloc[0], 2))\n"
+         "print('Solar 2016 to 2024, TWh:', round(el[el.year == 2024]['Solar'].iloc[0], 2))\n"
+         "print('Fossil share of primary production 2015:', round(en[en.year == 2015]['Fossil share of primary %'].iloc[0], 1), '%')\n"
+         "print('Fossil share of primary production 2024:', round(en[en.year == 2024]['Fossil share of primary %'].iloc[0], 1), '%')\n"
+         "print('Oil and gas capex 2024, $m:', round(cx[cx.year == 2024]['Oil and gas extraction [211]'].iloc[0]))\n"
+         "print('Utilities capex 2024, $m:', round(cx[cx.year == 2024]['Utilities [22]'].iloc[0]))"),
+    code("# Part B: model results for 2024\n"
+         "mod = pd.read_csv('credit/data/models.csv')\n"
+         "met = pd.read_csv('credit/data/metrics.csv')\n"
+         "m24 = met[met.fiscal_year_end.str.startswith('2024')].set_index('ticker')\n"
+         "mod[['ticker', 'altman_zprime', 'springate', 'zmijewski_prob_pct',\n"
+         "     'merton_dd', 'synthetic_rating', 'debt_ebitda', 'interest_coverage']].round(2)"),
+    code("# Joint table: scorecard total against debt to EBITDA and coverage\n"
+         "joint = sc.merge(mod[['ticker', 'debt_ebitda', 'interest_coverage',\n"
+         "                      'zmijewski_prob_pct', 'synthetic_rating']],\n"
+         "                 left_on='ticker', right_on='ticker')\n"
+         "joint[['company', 'total', 'debt_ebitda', 'interest_coverage',\n"
+         "       'zmijewski_prob_pct', 'synthetic_rating']].sort_values('total', ascending=False).round(2)"),
+    code("# Chart: debt to EBITDA, 2024\n"
+         "s = mod.sort_values('debt_ebitda')\n"
+         "plt.figure(figsize=(9, 5.5))\n"
+         "plt.barh(s['company'], s['debt_ebitda'], color='#1D5C30')\n"
+         "plt.axvline(3.0, color='#9CA3AF', linestyle='--')\n"
+         "plt.xlabel('Total debt divided by EBITDA, times')\n"
+         "plt.title('Debt to EBITDA, 2024 annuals')\n"
+         "plt.tight_layout()\n"
+         "plt.show()"),
+    code("# Chart: leverage against coverage, 2024, log scale\n"
+         "plt.figure(figsize=(9, 5.5))\n"
+         "plt.scatter(mod['debt_ebitda'], mod['interest_coverage'], s=90, color='#1D5C30')\n"
+         "for _, r in mod.iterrows():\n"
+         "    plt.annotate(r['ticker'], (r['debt_ebitda'], r['interest_coverage']),\n"
+         "                 textcoords='offset points', xytext=(5, 5), fontsize=9)\n"
+         "plt.axvline(3.0, color='#9CA3AF', linestyle='--')\n"
+         "plt.axhline(3.0, color='#9CA3AF', linestyle='--')\n"
+         "plt.xlabel('Debt to EBITDA, times')\n"
+         "plt.ylabel('Interest coverage, times (log scale)')\n"
+         "plt.yscale('log')\n"
+         "plt.title('Leverage against interest coverage, 2024 annuals')\n"
+         "plt.tight_layout()\n"
+         "plt.show()"),
+    md("## Method and limits\n\n"
+       "Scorecard: 4 measures scored 0 to 5 from each company's 2024 "
+       "sustainability report, except Imperial Oil (2022, latest available). "
+       "Bill C-59 stripped environmental content from the CNQ, Suncor and "
+       "Cenovus 2024 reports, so their climate and disclosure scores are "
+       "disclosure gaps, not performance verdicts. Credit models: 2024 "
+       "annual financials from Yahoo Finance, USD reporters converted at "
+       "USD/CAD 1.435. Merton is point-in-time at 31 December 2024. "
+       "Transition data: Statistics Canada tables 25-10-0015-01, "
+       "25-10-0029-01 and 34-10-0035-01. Past performance does not predict "
+       "future performance."),
+]
+nb = {"cells": cells, "metadata": {"kernelspec": {"display_name": "Python 3",
+       "language": "python", "name": "python3"}, "language_info": {"name": "python", "version": "3.12"}},
+      "nbformat": 4, "nbformat_minor": 5}
+(base / "Who_Can_Pay_for_the_Transition_Notebook.ipynb").write_text(json.dumps(nb, indent=1))
+print("notebook done")

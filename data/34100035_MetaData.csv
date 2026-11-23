@@ -1,0 +1,117 @@
+﻿"Cube Title","Product Id","CANSIM Id",URL,"Cube Notes","Archive Status",Frequency,"Start Reference Period","End Reference Period","Total number of dimensions"
+"Capital and repair expenditures, non-residential tangible assets, by industry and geography","34100035","029-0045","https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3410003501",1;2;4,"CURRENT - a cube available to the public and that is current","Annual","2006-01-01","2026-01-01","3",
+
+"Dimension ID","Dimension name","Dimension Notes","Dimension Definitions"
+"1","Geography",,""
+"2","Capital and repair expenditures",,""
+"3","North American Industry Classification System (NAICS)",,""
+
+"Dimension ID","Member Name","Classification Code","Member ID","Parent Member ID",Terminated,"Member Notes","Member Definitions"
+"1","Canada","[11124]","1","","",,
+"1","Newfoundland and Labrador","[10]","2","1","",,
+"1","Prince Edward Island","[11]","3","1","",,
+"1","Nova Scotia","[12]","4","1","",,
+"1","New Brunswick","[13]","5","1","",,
+"1","Quebec","[24]","6","1","",,
+"1","Ontario","[35]","7","1","",,
+"1","Manitoba","[46]","8","1","",,
+"1","Saskatchewan","[47]","9","1","",,
+"1","Alberta","[48]","10","1","",,
+"1","British Columbia","[59]","11","1","",,
+"1","Yukon","[60]","12","1","",,
+"1","Northwest Territories","[61]","13","1","",,
+"1","Nunavut","[62]","14","1","",,
+"2","Capital expenditures","","1","","",,
+"2","Capital, construction","","2","1","",,
+"2","Capital, machinery and equipment","","3","1","",,
+"2","Repair expenditures","","4","","",,
+"2","Repair, construction","","5","4","",,
+"2","Repair, machinery and equipment","","6","4","",,
+"3","All Industries","","1","","",,
+"3","Agriculture, forestry, fishing and hunting","[11]","2","1","",,
+"3","Crop production","[111]","3","2","",,
+"3","Animal production and aquaculture","[112]","4","2","",,
+"3","Forestry and logging","[113]","5","2","",,
+"3","Fishing, hunting and trapping","[114]","6","2","",,
+"3","Support activities for agriculture and forestry","[115]","7","2","",,
+"3","Mining, quarrying, and oil and gas extraction","[21]","8","1","",,
+"3","Oil and gas extraction","[211]","9","8","",,
+"3","Mining and quarrying (except oil and gas)","[212]","10","8","",,
+"3","Support activities for mining, and oil and gas extraction","[213]","11","8","",,
+"3","Utilities","[22]","12","1","",,
+"3","Construction","[23]","13","1","",,
+"3","Manufacturing","[31-33]","14","1","",,
+"3","Food manufacturing","[311]","15","14","",,
+"3","Beverage manufacturing","[3121]","16","14","",,
+"3","Tobacco manufacturing","[3122]","17","14","",,
+"3","Cannabis product manufacturing","[3123]","55","14","",,
+"3","Textile mills","[313]","18","14","",,
+"3","Textile product mills","[314]","19","14","",,
+"3","Apparel manufacturing","[315]","20","14","",,
+"3","Leather and allied product manufacturing","[316]","21","14","",,
+"3","Wood product manufacturing","[321]","22","14","",,
+"3","Paper manufacturing","[322]","23","14","",,
+"3","Printing and related support activities","[323]","24","14","",,
+"3","Petroleum and coal product manufacturing","[324]","25","14","",,
+"3","Chemical manufacturing","[325]","26","14","",,
+"3","Plastics and rubber products manufacturing","[326]","27","14","",,
+"3","Non-metallic mineral product manufacturing","[327]","28","14","",,
+"3","Primary metal manufacturing","[331]","29","14","",,
+"3","Fabricated metal product manufacturing","[332]","30","14","",,
+"3","Machinery manufacturing","[333]","31","14","",,
+"3","Computer and electronic product manufacturing","[334]","32","14","",,
+"3","Electrical equipment, appliance and component manufacturing","[335]","33","14","",,
+"3","Transportation equipment manufacturing","[336]","34","14","",,
+"3","Furniture and related product manufacturing","[337]","35","14","",,
+"3","Miscellaneous manufacturing","[339]","36","14","",,
+"3","Wholesale trade","[41]","37","1","",,
+"3","Retail trade","[44-45]","38","1","",,
+"3","Transportation and warehousing","[48-49]","39","1","",,
+"3","Information and cultural industries","[51]","40","1","",,
+"3","Finance and insurance","[52]","41","1","",5,
+"3","Real estate and rental and leasing","[53]","42","1","",,
+"3","Professional, scientific and technical services","[54]","43","1","",,
+"3","Management of companies and enterprises","[55]","44","1","",,
+"3","Administrative and support, waste management and remediation services","[56]","45","1","",,
+"3","Educational services","[61]","46","1","",,
+"3","Health care and social assistance","[62]","47","1","",,
+"3","Arts, entertainment and recreation","[71]","48","1","",,
+"3","Accommodation and food services","[72]","49","1","",,
+"3","Other services (except public administration)","[81]","50","1","",6,
+"3","Public administration","[91]","51","1","",7,
+"3","Federal government public administration","[911]","52","51","",,
+"3","Provincial and territorial public administration","[912]","53","51","",,
+"3","Local, municipal and regional public administration","[913]","54","51","",,
+
+Symbol Legend
+Description,Symbol
+"not available for a specific reference period","..",
+"less than the limit of detection","<LOD",
+"value rounded to 0 (zero) where there is a meaningful distinction between true zero and the value that was rounded","0s",
+"data quality: excellent","A",
+"data quality: very good","B",
+"data quality: good","C",
+"data quality: acceptable","D",
+"use with caution","E",
+"too unreliable to be published","F",
+"not applicable","...",
+"preliminary","p",
+"revised","r",
+"suppressed to meet the confidentiality requirements of the Statistics Act","x",
+"terminated","t",
+
+"Survey Code","Survey Name"
+"2803","Annual Capital and Repair Expenditures Survey: Actual, Preliminary Actual and Intentions"
+
+"Subject Code","Subject Name"
+"34","Construction"
+
+"Note ID",Note
+1,"From reference year 2013, this table replaces the archived Table 34-10-0015 and Table 34-10-0032 due to methodology changes. For further information on methodology changes, please refer to the following specifications' link: <a href = "http://www23.statcan.gc.ca/imdb-bmdi/document/2803_D16_T9_V1-eng.pdf" rel="external noopener noreferrer" target="_blank">http://www23.statcan.gc.ca/imdb-bmdi/document/2803_D16_T9_V1-eng.pdf (opens new window)</a>."
+2,"Quality indicators: Code A=Excellent. Code B=Very good. Code C=Good. Code D=Acceptable. Code E=Poor, use with caution. Code F=Too unreliable to be published. For further clarification, consult the Data accuracy section of the Annual Capital and Repair Expenditures Survey: Actual, Preliminary Actual and Intentions - <a href="https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=2803#a3" rel="external noopener noreferrer" target="_blank">2803 (opens new window)</a>."
+4,"Most recent 2 years of data are preliminary actuals and intentions and do not have the repairs expenditures."
+5,"Conceptual changes on International Financing Reporting Standards where implemented in the Capital Expenditure Survey for Actual 2013. Beginning with Actual 2013, organizations from every sector were asked to report their capital spending on financial leases. Previously, organizations detaining the financial lease were asked to report the value of those. These changes had an impact on estimates of capital spending by organizations in the Financial and Insurance sector. Commencing with Actual 2013, the data are not comparable with the previous years."
+6,"Capital expenditures for North American Industry Classification System (NAICS) Subsector 814 "Private Households" are excluded from the total for this category or table."
+7,"Capital expenditures for North American Industry Classification System (NAICS) Subsectors 914 "Aboriginal public administration" and 919 "International and Other Extra-Territorial Public Administration" are excluded from the total of this category or table."
+
+"Correction ID","Correction Date","Correction Note"
